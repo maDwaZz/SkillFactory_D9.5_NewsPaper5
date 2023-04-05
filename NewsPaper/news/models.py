@@ -4,7 +4,6 @@ from django.db.models import Sum
 from django.urls import reverse
 
 
-
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_rating = models.FloatField(default=0.0)
@@ -30,7 +29,7 @@ class Category(models.Model):
     subscribers = models.ManyToManyField(User, related_name='categories')
 
     def __str__(self):
-        return self.news_category.title()
+        return self.news_category
 
 
 class Post(models.Model):

@@ -21,6 +21,7 @@ Post
         <table>
             <tr>
                 <td>Заголовок</td>
+                <td>Категории</td>
                 <td>Дата публикации</td>
                 <td>Текст</td>
             </tr>
@@ -28,6 +29,11 @@ Post
             {% for news_detail in news_list %}
             <tr>
                 <td>{{ news_detail.title|censor }}</td>
+                <td>
+                    {% for category in news_detail.categories.all %}
+                        <a href="{% url 'category_list' category.id %}">{{ category }}</a>
+                    {% endfor %}
+                </td>
                 <td>{{ news_detail.creation_time|date:'d M Y' }}</td>
                 <td>{{ news_detail.text|truncatewords:20|censor }}</td>
             </tr>
